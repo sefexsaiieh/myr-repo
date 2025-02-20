@@ -1,11 +1,25 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
+import type { LatLngExpression } from "leaflet"
 
-export default function ItineraryMap({ activities }) {
-  const center = activities[0].location
+interface Activity {
+  id: string
+  name: string
+  location: {
+    lat: number
+    lng: number
+  }
+}
+
+interface ItineraryMapProps {
+  activities: Activity[]
+}
+
+export default function ItineraryMap({ activities }: ItineraryMapProps) {
+  const center: LatLngExpression = [activities[0].location.lat, activities[0].location.lng]
 
   return (
-    <MapContainer center={[center.lat, center.lng]} zoom={13} style={{ height: "100%", width: "100%" }}>
+    <MapContainer center={center} zoom={13} style={{ height: "100%", width: "100%" }}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

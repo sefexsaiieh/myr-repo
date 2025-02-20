@@ -6,7 +6,7 @@ import dynamic from "next/dynamic"
 const ItineraryMap = dynamic(() => import("../../components/ItineraryMap"), { ssr: false })
 
 export default function ItineraryPage() {
-  const [itinerary, setItinerary] = useState(null)
+  const [itinerary, setItinerary] = useState<any>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
